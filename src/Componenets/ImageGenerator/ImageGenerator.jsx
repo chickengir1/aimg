@@ -7,8 +7,9 @@ const ImageGenerator = () => {
   const inputRef = useRef(null);
   const [loading, setLoading] = useState(false);
 
-  // 환경변수에서 API 키를 가져옵니다.
+
   const apiKey = import.meta.env.VITE_APP_OPENAI_API_KEY;
+  console.log("API Key:", apiKey);
 
   const generateImage = async () => {
     if (!inputRef.current.value) {
