@@ -7,7 +7,6 @@ const ImageGenerator = () => {
   const inputRef = useRef(null);
   const [loading, setLoading] = useState(false);
 
-
   const apiKey = import.meta.env.VITE_APP_OPENAI_API_KEY;
   console.log("API Key:", apiKey);
 
@@ -18,19 +17,23 @@ const ImageGenerator = () => {
     setLoading(true);
 
     try {
+      const requestBody = {
+        prompt: inputRef.current.value,
+        n: 1,
+        size: "512x512",
+      };
+
+      console.log("Request Body:", requestBody);
+
       const response = await fetch(
         "https://api.openai.com/v1/images/generations",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${apiKey}`,
+            "Authorization": `Bearer ${apiKey}`,
           },
-          body: JSON.stringify({
-            prompt: inputRef.current.value,
-            n: 1,
-            size: "512x512",
-          }),
+          body: JSON.stringify(requestBody),
         }
       );
 
@@ -41,6 +44,8 @@ const ImageGenerator = () => {
       }
 
       const data = await response.json();
+      console.log("Response Data:", data);
+
       if (data && data.data && data.data[0] && data.data[0].url) {
         setImageUrl(data.data[0].url);
       } else {
@@ -60,7 +65,7 @@ const ImageGenerator = () => {
       </div>
       <div className="img-loading">
         <img src={imageUrl} alt="Generated" />
-        <div className={loading ?  "loading-bar" : "loading-bar-full"}></div>
+        <div className={loading ? "loading-bar" : "loading-bar-full"}></div>
       </div>
       <div className="search-box">
         <input
