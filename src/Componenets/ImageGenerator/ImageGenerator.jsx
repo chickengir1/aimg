@@ -59,7 +59,7 @@ const ImageGenerator = () => {
       </div>
       <div className="img-loading">
         <img src={imageUrl} alt="Generated" />
-        <div className={loading ? "loading-bar-full" : "loading-bar"}></div>
+        <div className={loading ?  "loading-bar" : "loading-bar-full"}></div>
       </div>
       <div className="search-box">
         <input
