@@ -3,18 +3,18 @@ import "./ImageGenerator.css";
 import default_image from "../Asset/logo.png";
 
 const ImageGenerator = () => {
-  const [image_url, setImage_url] = useState("/");
+  const [imageUrl, setImageUrl] = useState(default_image);
   const inputRef = useRef(null);
   const [loading, setLoading] = useState(false);
 
+  // 환경변수에서 API 키를 가져옵니다.
+  const apiKey = import.meta.env.VITE_APP_OPENAI_API_KEY;
+
   const generateImage = async () => {
-    if (inputRef.current.value === "") {
+    if (!inputRef.current.value) {
       return;
     }
     setLoading(true);
-
-    const apiKey = "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";
-    console.log("Using API Key:", apiKey);
 
     try {
       const response = await fetch(
@@ -41,7 +41,7 @@ const ImageGenerator = () => {
 
       const data = await response.json();
       if (data && data.data && data.data[0] && data.data[0].url) {
-        setImage_url(data.data[0].url);
+        setImageUrl(data.data[0].url);
       } else {
         console.error("Unexpected response structure:", data);
       }
@@ -58,8 +58,8 @@ const ImageGenerator = () => {
         AI image <span>generator</span>
       </div>
       <div className="img-loading">
-        <img src={image_url === "/" ? default_image : image_url} alt="Generated" />
-        <div className={loading ? "loading-bar loading-bar-full" : "loading-bar"}></div>
+        <img src={imageUrl} alt="Generated" />
+        <div className={loading ? "loading-bar-full" : "loading-bar"}></div>
       </div>
       <div className="search-box">
         <input
