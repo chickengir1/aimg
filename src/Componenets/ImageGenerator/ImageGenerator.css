@@ -1,3 +1,4 @@
+
 .ai-image-generator {
     display: flex;
     flex-direction: column;
@@ -64,14 +65,15 @@
     width: 0;
     height: 7px;
     background: #de1b89;
-    position: absolute; 
-    bottom: 0; 
-    left: 0; 
+    position: absolute;
+    bottom: 0;
+    left: 0;
     transition: width 15s;
 }
 .loading-bar-full {
     width: 460px;
 }
+
 
 @media (max-width: 1200px) {
     .search-box {
@@ -82,6 +84,9 @@
     }
     .generate-btn {
         width: 225px;
+    }
+    .loading-bar-full {
+        width: 100%;
     }
 }
 
@@ -110,11 +115,8 @@
         width: 90%;
         height: auto;
     }
-    .loading-bar {
-        width: 0;
-    }
     .loading-bar-full {
-        width: 90%;
+        width: 100%;
     }
 }
 
@@ -140,7 +142,11 @@
         width: 90%;
         height: auto;
     }
-    .loading-bar, .loading-bar-full {
-        width: 90%;
+    .loading-bar{
+        width: 0px;
+    }
+    
+    .loading-bar-full {
+        width: 100%;
     }
 }
