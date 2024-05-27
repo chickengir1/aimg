@@ -13,6 +13,9 @@ const ImageGenerator = () => {
     }
     setLoading(true);
 
+    const apiKey = "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";
+    console.log("Using API Key:", apiKey);
+
     try {
       const response = await fetch(
         "https://api.openai.com/v1/images/generations",
@@ -20,7 +23,7 @@ const ImageGenerator = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer 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", // 실제 프로젝트에서는 환경 변수를 사용하세요.
+            Authorization: `Bearer ${apiKey}`,
           },
           body: JSON.stringify({
             prompt: inputRef.current.value,
