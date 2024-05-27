@@ -72,7 +72,7 @@ const ImageGenerator = () => {
           type="text"
           ref={inputRef}
           className="search-input"
-          placeholder="원하는 이미지를 설명하세요"
+          placeholder="원하는 이미지를 설명하세요(영어로)"
         />
         <div className="generate-btn" onClick={generateImage}>Generate</div>
       </div>
