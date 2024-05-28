@@ -1,4 +1,6 @@
-import React, { useRef, useState } from "react";
+// eslint-disable-next-line no-unused-vars
+import React from "react";
+import { useRef, useState } from "react"
 import "./ImageGenerator.css";
 import default_image from "../Asset/logo.png";
 
