@@ -10,7 +10,6 @@ const ImageGenerator = () => {
   const [loading, setLoading] = useState(false);
 
   const apiKey = import.meta.env.VITE_APP_OPENAI_API_KEY;
-  console.log("API Key:", apiKey);
 
   const generateImage = async () => {
     if (!inputRef.current.value) {
