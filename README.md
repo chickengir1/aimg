@@ -27,6 +27,8 @@ OpenAI API 키
 
 레포지토리 클론:
 git clone https://github.com/yourusername/imgGenerator.git
+
+
 cd imgGenerator
 
 의존성 설치:
