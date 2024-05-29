@@ -1,4 +1,4 @@
-# imgGenerator
+# aimg
 이 레포지토리는 사용자가 입력한 프롬프트를 토대로 이미지를 생성하는 웹 애플리케이션입니다.
 
 OpenAI API를 활용하여 사용자에게 독창적인 AI 생성 이미지를 제공합니다.
@@ -26,10 +26,10 @@ OpenAI API 키
 설치
 
 레포지토리 클론:
-git clone https://github.com/yourusername/imgGenerator.git
+git clone https://github.com/yourusername/aimg.git
 
 
-cd imgGenerator
+cd aimg
 
 의존성 설치:
 
