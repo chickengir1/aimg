@@ -17,12 +17,16 @@
     color: #de1b89;
     font-weight: 600;
 }
+
 .img-loading {
     display: flex;
     flex-direction: column;
     position: relative;
     align-items: center;
-}
+    transform: scaleX(-1);
+  
+  }
+
 .img-loading img {
     width: 460px;
     height: 460px;
@@ -69,7 +73,9 @@
     bottom: 0;
     left: 0;
     transition: width 15s;
-}
+    border-radius: 3.5px;
+  }
+  
 .loading-bar-full {
     width: 460px;
 }

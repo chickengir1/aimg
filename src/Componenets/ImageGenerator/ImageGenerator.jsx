@@ -4,25 +4,50 @@ import default_image from "../Asset/logo.png";
 
 const ImageGenerator = () => {
   const [imageUrl, setImageUrl] = useState(default_image);
-  const inputRef = useRef(null);
   const [loading, setLoading] = useState(false);
+  const inputRef = useRef(null);
 
   const apiKey = import.meta.env.VITE_APP_OPENAI_API_KEY;
 
-  const generateImage = async () => {
-    if (!inputRef.current.value) {
-      return;
+  const validateInput = (inputValue) => {
+    if (!inputValue) {
+      console.error("Input is empty");
+      return false;
     }
+    return true;
+  };
+
+  const createRequestBody = (prompt) => ({
+    prompt,
+    n: 1,
+    size: "512x512",
+  });
+
+  const handleApiResponse = async (response) => {
+    if (!response.ok) {
+      const errorDetails = await response.json();
+      console.error("Error detail:", errorDetails);
+      throw new Error(`HTTP error! status ${response.status}`);
+    }
+
+    const data = await response.json();
+    if (data?.data?.[0]?.url) {
+      return data.data[0].url;
+    } else {
+      console.error("Unexpected response structure", data);
+      throw new Error("Unexpected response structure");
+    }
+  };
+
+  const generateImage = async () => {
+    const inputValue = inputRef.current?.value;
+
+    if (!validateInput(inputValue)) return;
+
     setLoading(true);
 
     try {
-      const requestBody = {
-        prompt: inputRef.current.value,
-        n: 1,
-        size: "512x512",
-      };
-
-      console.log("Request Body:", requestBody);
+      const requestBody = createRequestBody(inputValue);
 
       const response = await fetch(
         "https://api.openai.com/v1/images/generations",
@@ -36,34 +61,21 @@ const ImageGenerator = () => {
         }
       );
 
-      if (!response.ok) {
-        const errorDetails = await response.json();
-        console.error("Error details:", errorDetails);
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      console.log("Response Data:", data);
-
-      if (data && data.data && data.data[0] && data.data[0].url) {
-        setImageUrl(data.data[0].url);
-      } else {
-        console.error("Unexpected response structure:", data);
-      }
+      const imageUrl = await handleApiResponse(response);
+      setImageUrl(imageUrl);
     } catch (error) {
-      console.error("Error generating image:", error);
+      console.error("Error generating image", error);
     } finally {
       setLoading(false);
     }
   };
-
   return (
     <div className="ai-image-generator">
       <div className="header">
         AI image <span>generator</span>
       </div>
       <div className="img-loading">
-        <img src={imageUrl} alt="Generated" />
+        <img style={{ borderRadius: 100 }} src={imageUrl} alt="Generated" />
         <div className={loading ? "loading-bar" : "loading-bar-full"}></div>
       </div>
       <div className="search-box">
@@ -71,7 +83,7 @@ const ImageGenerator = () => {
           type="text"
           ref={inputRef}
           className="search-input"
-          placeholder="원하는 이미지를 설명하세요(영어로)"
+          placeholder="원하는 이미지를 설명하세요"
         />
         <div className="generate-btn" onClick={generateImage}>
           Generate
