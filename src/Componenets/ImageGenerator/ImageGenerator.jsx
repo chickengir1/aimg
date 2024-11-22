@@ -1,6 +1,4 @@
-// eslint-disable-next-line no-unused-vars
-import React from "react";
-import { useRef, useState } from "react"
+import { useRef, useState } from "react";
 import "./ImageGenerator.css";
 import default_image from "../Asset/logo.png";
 
@@ -32,7 +30,7 @@ const ImageGenerator = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${apiKey}`,
+            Authorization: `Bearer ${apiKey}`,
           },
           body: JSON.stringify(requestBody),
         }
@@ -75,7 +73,9 @@ const ImageGenerator = () => {
           className="search-input"
           placeholder="원하는 이미지를 설명하세요(영어로)"
         />
-        <div className="generate-btn" onClick={generateImage}>Generate</div>
+        <div className="generate-btn" onClick={generateImage}>
+          Generate
+        </div>
       </div>
     </div>
   );
