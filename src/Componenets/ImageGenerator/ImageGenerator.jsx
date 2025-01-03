@@ -18,6 +18,7 @@ const ImageGenerator = () => {
   };
 
   const createRequestBody = (prompt) => ({
+    model: "dall-e-3",    
     prompt,
     n: 1,
     size: "512x512",
