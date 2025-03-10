@@ -3,6 +3,9 @@
 **Aimg**는 사용자가 입력한 프롬프트를 바탕으로 **AI 기반 이미지를 생성**하는 웹 애플리케이션입니다.  
 **OpenAI API**를 활용하여 사용자에게 독창적이고 맞춤화된 AI 생성 이미지를 제공합니다.
 
+![image](https://github.com/user-attachments/assets/322cc8b6-667e-4c51-adb5-ae9ed9009863)
+![image](https://github.com/user-attachments/assets/f8a3d81b-37f2-4511-b976-ae838b1630db)
+
 ---
 
 ## 주요 기능
