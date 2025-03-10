@@ -4,7 +4,6 @@
 **OpenAI API**를 활용하여 사용자에게 독창적이고 맞춤화된 AI 생성 이미지를 제공합니다.
 
 ![image](https://github.com/user-attachments/assets/322cc8b6-667e-4c51-adb5-ae9ed9009863)
-![image](https://github.com/user-attachments/assets/f8a3d81b-37f2-4511-b976-ae838b1630db)
 
 ---
 
